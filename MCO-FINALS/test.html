@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthWay Dashboard</title>
+    <link rel="stylesheet" href="tt.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="topnav">
+            <div class="logo">HealthWay</div>
+            <div class="nav-links">
+                <a href="#">Dashboard</a>
+                <a href="#">Patients</a>
+                <a href="#">Staff</a>
+                <a href="#">Appointments</a>
+            </div>
+            <div class="profile">
+                <span>Izza Mariel</span>
+                <img src="profile.jpg" alt="Profile Picture">
+            </div>
+        </nav>
+        <aside>
+            <nav>
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Patients</a></li>
+                    <li><a href="#">Staff</a></li>
+                    <li><a href="#">Appointments</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main>
+            <header>
+                <div class="welcome">
+                    <h1>Welcome, Izza Mariel</h1>
+                </div>
+            </header>
+            <section class="overview">
+                <div class="box">4 Appointment</div>
+                <div class="box">2 Pending</div>
+                <div class="box">3 Staff</div>
+                <div class="calendar">
+                    <h2>May 2024</h2>
+                    <table class="calendar-table">
+                        <thead>
+                            <tr>
+                                <th>Sun</th>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wed</th>
+                                <th>Thu</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>11</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                                <td>15</td>
+                                <td>16</td>
+                                <td>17</td>
+                                <td>18</td>
+                            </tr>
+                            <tr>
+                                <td>19</td>
+                                <td>20</td>
+                                <td>21</td>
+                                <td>22</td>
+                                <td>23</td>
+                                <td>24</td>
+                                <td>25</td>
+                            </tr>
+                            <tr>
+                                <td>26</td>
+                                <td>27</td>
+                                <td>28</td>
+                                <td>29</td>
+                                <td>30</td>
+                                <td>31</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section class="appointments">
+                <h2>Booked Appointment</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Patient Name</th>
+                            <th>Doctor Name</th>
+                            <th>Service</th>
+                            <th>Date/Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointments-table-body">
+                        <?php
+                        // Load appointments from file
+                        $appointments = file_exists('appointments.txt') ? file('appointments.txt') : [];
+                        foreach ($appointments as $appointment) {
+                            list($patientName, $doctorName, $service, $dateTime, $status) = explode('|', trim($appointment));
+                            echo "<tr>
+                                    <td>$patientName</td>
+                                    <td>$doctorName</td>
+                                    <td>$service</td>
+                                    <td>$dateTime</td>
+                                    <td>$status</td>
+                                  </tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </section>
+            <section class="add-patient">
+                <button id="open-modal-button">Add Patient</button>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="add-patient-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Add Patient</h2>
+            <form id="add-patient-form" action="testphp.php" method="post">
+                <label for="patient-name">Patient Name:</label>
+                <input type="text" id="patient-name" name="patient_name" required>
+                
+                <label for="doctor-name">Doctor Name:</label>
+                <input type="text" id="doctor-name" name="doctor_name" required>
+                
+                <label for="service">Service:</label>
+                <input type="text" id="service" name="service" required>
+                
+                <label for="date-time">Date/Time:</label>
+                <input type="datetime-local" id="date-time" name="date_time" required>
+                
+                <label for="status">Status:</label>
+                <select id="status" name="status" required>
+                    <option value="Pending">Pending</option>
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="Completed">Completed</option>
+                </select>
+                
+                <button type="submit">Add Patient</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="testjs.js"></script>
+</body>
+</html>

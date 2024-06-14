@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+    <style> 
+html { 
+  background: url(assets/img.jpg) no-repeat center fixed; 
+  background-size: cover;
+}
+
+body { 
+  color: white; 
+  
+}
+</style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="#" onclick="showSection('dashboard')">Dashboard</a>
+        <a href="#" onclick="showSection('patients')">Patients</a>
+        <a href="#" onclick="showSection('staffs')">Staffs</a>
+        <a href="#" onclick="showSection('appointments')">Appointments</a>
+    </div>
+    <div class="content">
+        <div id="dashboard" class="hidden">
+            <h2>WELCOME IZZA MARIE</h2>
+            <?php include 'dashboard.php'; ?>
+        </div>
+        <div id="patients" class="hidden">
+            <h2>Patients</h2>
+            <?php include 'patients.php'; ?>
+        </div>
+
+        <div id="staffs" class="hidden">
+            <h2>Staffs</h2>
+        </div>
+
+        <div id="appointments" class="hidden">
+          <h2>Appointments</h2>
+        </div>
+    </div>
+    <script src="javascript/script.js"></script>
+</body>
+</html>
